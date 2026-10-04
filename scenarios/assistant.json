@@ -1,0 +1,45 @@
+{
+  "default_response": "Mock reply: I received your message and this is a deterministic canned response. Edit scenarios/*.json to teach me new tricks.",
+  "failure": {
+    "error_rate": 0.0,
+    "error_status": 500,
+    "latency_ms": 0,
+    "malformed_json_rate": 0.0
+  },
+  "model": "mock-gpt-1",
+  "name": "helpful-assistant",
+  "rules": [
+    {
+      "match": {
+        "contains": [
+          "hello",
+          "hi",
+          "hey"
+        ]
+      },
+      "response": "Hello! I'm a mock LLM running locally on your machine. Ask me anything -- no API key required."
+    },
+    {
+      "match": {
+        "contains": "joke"
+      },
+      "response": [
+        "Why do programmers prefer dark mode? Because light attracts bugs.",
+        "There are only 10 kinds of people: those who understand binary and those who don't.",
+        "I told my computer I needed a break, and now it won't stop sending me KitKat ads."
+      ]
+    },
+    {
+      "match": {
+        "regex": "weather in (?P<city>[A-Za-z ]+)"
+      },
+      "response": "Let me check that for you.",
+      "tool_calls": [
+        {
+          "args_from_regex": "weather in (?P<location>[A-Za-z ]+)",
+          "name": "get_weather"
+        }
+      ]
+    }
+  ]
+}
