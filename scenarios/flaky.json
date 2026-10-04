@@ -1,0 +1,12 @@
+{
+  "default_response": "You got lucky -- this response made it through the flakiness.",
+  "failure": {
+    "error_rate": 0.3,
+    "error_status": 500,
+    "latency_ms": 300,
+    "malformed_json_rate": 0.1
+  },
+  "model": "mock-gpt-1",
+  "name": "flaky",
+  "rules": []
+}
