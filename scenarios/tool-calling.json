@@ -1,0 +1,44 @@
+{
+  "default_response": "I only know how to call tools in this scenario. Try asking me to add two numbers, e.g. 'What is 12 + 30?'",
+  "failure": {
+    "error_rate": 0.0,
+    "error_status": 500,
+    "latency_ms": 0,
+    "malformed_json_rate": 0.0
+  },
+  "model": "mock-gpt-1-tools",
+  "name": "tool-caller",
+  "rules": [
+    {
+      "match": {
+        "regex": "(?P<a>\\d+)\\s*\\+\\s*(?P<b>\\d+)"
+      },
+      "response": null,
+      "tool_calls": [
+        {
+          "args_from_regex": "(?P<a>\\d+)\\s*\\+\\s*(?P<b>\\d+)",
+          "name": "add"
+        }
+      ]
+    },
+    {
+      "match": {
+        "contains": [
+          "search",
+          "look up",
+          "find"
+        ]
+      },
+      "response": null,
+      "tool_calls": [
+        {
+          "args": {
+            "query": "mock query",
+            "top_k": 3
+          },
+          "name": "web_search"
+        }
+      ]
+    }
+  ]
+}
