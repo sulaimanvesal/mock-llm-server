@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mock-llm-server"
+version = "0.1.0"
+description = "Local OpenAI-compatible stub LLM server for testing agent code -- no API keys needed"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+
+[project.scripts]
+mock-llm-server = "mockllm.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["mockllm*"]
